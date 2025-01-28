@@ -3,6 +3,7 @@ package ssii.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -11,21 +12,21 @@ import java.util.List;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
-public class Personne {
+public class Projet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer matricule;
+    private Integer code;
 
     @NonNull
     private String nom;
 
     @NonNull
-    private String prenom;
+    private LocalDate debut;
 
     @NonNull
-    private String poste;
+    private LocalDate fin;
 
-    @OneToMany(mappedBy = "personne", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participation> participations;
 }
